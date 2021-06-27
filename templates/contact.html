@@ -3,11 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Contact</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+     crossorigin="anonymous">
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('home') }}">SUPER STRONKA</a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
+            <li class="nav-item">
+              <a href="{{ url_for('aboutme') }}" class="nav-link">About me</a>
+            </li>
+            <li class="nav-item"><a href="{{ url_for('gallery') }}" class="nav-link">Gallery</a></li>
+            <li class="nav-item active"><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
+            <li class="nav-item"><a href="{{url_for('guestbook')}}" class="nav-link">Guestbook</a></li>
+        </ul>
+      </nav>
 
-<p style="color:slateblue">My student ID is 71535</p>
-<a href="mailto:mail@mail">Contact here!</a>
+
+
+<div class="container mt-5">
+    <h1>Contact</h1>
+    <p style="color:slateblue">My student ID is 71535</p>
+
+  </div>
+<div class="container">
+      <div class="jumbotron">
+          <h1>Send message</h1>
+          <p>Please send message</p>
+      </div>
+      <form action="/api/send_mail" method="post">
+      <div class="form-group">
+              <label for="InputNickname">Nickname:</label>
+              <input type="text" class="form-control" name="nick" placeholder="Podaj swój nick" required>
+          </div>
+          <div class="form-group">
+              <label for="InputEmail">Email:</label>
+              <input type="email" class="form-control" name="email" placeholder="Podaj adres email" required>
+          </div>
+          <div class="form-group">
+              <label for="InputMess">Message:</label>
+              <input type="text" class="form-control" name="email" placeholder="Podaj treść wiadomości" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Send!</button>
+      </form>
+
 
 </body>
 </html>

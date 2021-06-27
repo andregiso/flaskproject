@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>GuestBook</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+     crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('home') }}">My site</a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
+            <li class="nav-item">
+              <a href="{{ url_for('aboutme') }}" class="nav-link">About me</a>
+            </li>
+            <li class="nav-item"><a href="{{ url_for('gallery') }}" class="nav-link">Gallery</a></li>
+            <li class="nav-item"><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
+            <li class="nav-item active"><a href="{{url_for('guestbook')}}" class="nav-link">Guestbook</a></li>
+        </ul>
+      </nav>
+
+
+      <div class="px-4 py-4 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1>Księga gości</h1>
+    <form action="/addcomment" method="GET">
+        <input class="btn btn-primary" type="submit" value="Dodaj wpis">
+    </form>
+
+        {% for result in data %}
+            <div class="alert alert-primary" style="margin-top: 30px">
+                <div class="content">
+                    <span class="authour">{{result.name}}</span>
+                    <div class="metadata">
+                        <span class="date">{{result.date}}</span>
+                    </div>
+                    <div class="text">{{result.text}}</div>
+                </div>
+
+                <form action="/edit" method="POST" style="display: inline-block">
+                    <input type="hidden" name="id" value="{{result.id}}">
+                    <input type="submit" value="Edytuj" class="btn btn-secondary">
+                </form>
+                <form action="/delete" method="POST" style="display: inline-block">
+                    <input type="hidden" name="id" value="{{result.id}}">
+                    <input type="submit" value="Usuń" class="btn btn-danger">
+                </form>
+            </div>
+        {% else %}
+            <p>Brak wpisów </p>
+        {% endfor %}
+    </div>

@@ -1,0 +1,5 @@
+AZDBSERVER = 'gerand.database.windows.net'
+AZDBNAME = 'gerand'
+AZDBUSER = 'gerand'
+AZDBPW = 'Wutang1$'
+AZDBDRIVER = '{ODBC Driver 17 for SQL Server}'

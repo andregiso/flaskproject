@@ -3,8 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Gallery</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+     crossorigin="anonymous">
+     <style>
+        .img-container {
+          display: grid;
+          grid-template-columns: repeat(3, 350px);
+          grid-template-rows: repeat(2, auto);
+          grid-gap: 30px;
+        }
+        .img-container img {
+          overflow: hidden;
+          max-width: 350px;
+        }
+      </style>
 </head>
 <body>
-<img src="{{ url_for('static', filename='cat.jpg') }}" alt="Cat">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('home') }}">My site</a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
+            <li class="nav-item">
+              <a href="{{ url_for('aboutme') }}" class="nav-link">About me</a>
+            </li>
+            <li class="nav-item active"><a href="{{ url_for('gallery') }}" class="nav-link">Gallery</a></li>
+            <li class="nav-item"><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
+            <li class="nav-item"><a href="{{url_for('guestbook')}}" class="nav-link">Guestbook</a></li>
+          </ul>
+      </nav>
+
+      <div class="container">
+        <div class="img-container mt-5">
+          <img src="https://source.unsplash.com/random/350x350" alt="unsplash" class="img-fluid" /><img
+            src="https://source.unsplash.com/random/350x350"
+            alt="unsplash"
+            class="img-fluid "
+          /><img src="https://source.unsplash.com/random/350x350" alt="unsplash" class="img-fluid" /><img
+            src="https://source.unsplash.com/random/350x350"
+            alt="unsplash"
+            class="img-fluid"
+          /><img src="https://source.unsplash.com/random/350x350" alt="unsplash" /><img
+            src="https://source.unsplash.com/random/350x350"
+            alt="unsplash"
+            class="img-fluid"
+          />
+        </div>
+      </div>
+
 </body>
 </html>
