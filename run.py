@@ -14,8 +14,8 @@ os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 
 
 github_blueprint = make_github_blueprint(
-    client_id="ad651df4abdb833b5d88",
-    client_secret="6b00d43b58ee19a06ec1efa60afb7b88a5d85e79"
+    client_id="575679c9957a89339b2a",
+    client_secret="00beb8115f75849856a7481052877a5f1685fbb3"
 )
 app.register_blueprint(github_blueprint, url_prefix="/login")
 
@@ -30,6 +30,18 @@ def github_login():
 @app.route('/home')
 def home():
     return render_template('index.html', title='Home')
+
+
+@app.route("/")
+def index():
+    if not google.authorized:
+        return redirect(url_for("google.login"))
+    resp = google.get("/plus/v1/people/me")
+    assert resp.ok, resp.text
+    return "You are {email} on Google".format(email=resp.json()["emails"][0]["value"])
+
+if __name__ == "__main__":
+    app.run()
 
 @app.route('/gallery')
 def gallery():
